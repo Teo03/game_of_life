@@ -13,7 +13,8 @@
   "author": "Teodor Bogoeski",
   "license": "ISC",
   "dependencies": {
-    "gh-pages": "^1.1.0"
+    "gh-pages": "^1.1.0",
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
