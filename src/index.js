@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
 import './style.css';
+import { Life } from './components/Life';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render( <Life />, document.getElementById('app'));

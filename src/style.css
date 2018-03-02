@@ -19,14 +19,14 @@
     margin-bottom: -1px;
 }
 
-.off {
+.dead {
     background-color: white;
 }
 
-.on {
+.live {
     background-color: black;
 }
 
 #box:hover {
-    background-color: silver
+    background-color: rgb(168, 168, 168)
 }
