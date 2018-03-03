@@ -1,10 +1,23 @@
 * body {
     padding: 0;
     margin: 0;
+    background-color: #CBCBCB;
+}
+
+.heading {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-size: 50px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.btn {
+    padding: 8px;
 }
 
 .grid {
     width: 700px;
+    max-width: 710px;
     line-height: 0;
     margin: auto;
     margin-top: 20px;
@@ -12,7 +25,7 @@
 
 #box {
     display: inline-block;
-    border: 1px solid black;
+    border: 0.5px solid silver;
     width: 15px;
     height: 15px;
     margin-left: -1px;
@@ -24,9 +37,18 @@
 }
 
 .live {
-    background-color: black;
+    background-color: rgb(211,55,36);
 }
 
 #box:hover {
     background-color: rgb(168, 168, 168)
+}
+
+h3 {
+    margin-top: 30px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.footer {
+    z-index: -1;
 }

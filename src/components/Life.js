@@ -6,9 +6,13 @@ export class Life extends React.Component {
         super(props);
         this.cols = 50;
         this.rows = 30;
+        this.start = this.start.bind(this);
         this.select = this.select.bind(this);
-        this.state = {
-            grid:  Array(this.rows).fill(Array(this.cols).fill(0))
+        this.buttonActions = this.buttonActions.bind(this);
+        this.state = 
+        {
+            grid:  Array(this.rows).fill(Array(this.cols).fill(0)),
+            gen: 1
         }
     }
     
@@ -25,8 +29,10 @@ export class Life extends React.Component {
     }
 
     start() {
-        let gridCopy = _.map(this.state.grid, _.clone);
         let origGrid = this.state.grid;
+        let gridCopy = _.map(this.state.grid, _.clone);
+        let gen = 0;
+
         for (var i = 0; i < this.rows; i++) {
             for (var j = 0; j < this.cols; j++) {
                 let count = 0;
@@ -51,7 +57,8 @@ export class Life extends React.Component {
             }
         }
         this.setState({
-            grid: gridCopy
+            grid: gridCopy,
+            gen: this.state.gen + 1
         });
     }
 
@@ -63,22 +70,46 @@ export class Life extends React.Component {
             grid: copy
         });
     }
-
-    playButton() {
-        clearInterval(this.intervalId);
-        this.intervalId = setInterval(this.start, 100);
-    }
-
+    
     componentDidMount() {
         this.randomise();
-        this.playButton();
+    }
+
+    buttonActions(action){
+        switch(action){
+            case 'start':
+                clearInterval(this.intervalId);
+                this.intervalId = setInterval(this.start, 100);
+                break;
+            case 'pause':
+                clearInterval(this.intervalId);
+                break;
+            case 'clear':
+                clearInterval(this.intervalId);
+                this.setState({grid: Array(this.rows).fill(Array(this.cols).fill(0)), gen: 0})
+                break;
+            case 'randomise':
+                this.setState({gen: 1});
+                clearInterval(this.intervalId);
+                this.randomise();
+                break;
+            default:
+                alert('Something went wrong. Check the console (Ctrl+shift+i)');
+        }
     }
 
     render() {
         return ( 
-            <div>
-            <h1 className = 'text-center heading' > Game of Life </h1> 
-            <Grid grid = {this.state.grid} cols = {this.cols} rows = {this.rows} select={this.select}/> 
+            <div className="container">
+                <h1 className ='text-center heading'> Game of Life </h1>
+                <div className="buttons col-sm-12">
+                    <button className="btn btn-success col-sm-2" onClick={() => this.buttonActions('start')}>Start</button>
+                    <button className="btn btn-info col-sm-2" onClick={() => this.buttonActions('pause')}>Pause</button>
+                    <button className="btn btn-danger col-sm-2" onClick={() => this.buttonActions('clear')}>Clear</button>
+                    <button className="btn btn-primary col-sm-2" onClick={() => this.buttonActions('randomise')}>Randomise</button>
+                </div>
+                <Grid grid = {this.state.grid} cols = {this.cols} rows = {this.rows} select={this.select}/>
+                <h3>Generation: {this.state.gen}</h3>
             </div>
         );
     }

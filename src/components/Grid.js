@@ -18,8 +18,8 @@ export class Grid extends React.Component {
         <div className='container-fluid'>
             <div className="grid">
              {arr}
-           </div>
             </div>
+        </div>
         );
     }
 }
